@@ -14,6 +14,17 @@ struct ContentView: View {
     }
 }
 
+func speak()
+{
+    
+    let output = AVSpeechUtterance(string: word)
+    output.voice = AVSpeechSynthesisVoice(language: "en-GB")
+    output.rate = 0.55
+    
+    let synthesizer = AVSpeechSynthesizer()
+    synthesizer.speak(output)
+}
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
