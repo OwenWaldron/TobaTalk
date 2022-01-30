@@ -11,6 +11,8 @@
 		05E7D80527A7341200A0E6C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7D80427A7341200A0E6C9 /* ContentView.swift */; };
 		05E7D80727A7341400A0E6C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05E7D80627A7341400A0E6C9 /* Assets.xcassets */; };
 		05E7D80A27A7341400A0E6C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05E7D80927A7341400A0E6C9 /* Preview Assets.xcassets */; };
+		05E7D81227A73E7E00A0E6C9 /* ButtonGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7D81127A73E7E00A0E6C9 /* ButtonGridView.swift */; };
+		05E7D81427A73F0B00A0E6C9 /* AudioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7D81327A73F0B00A0E6C9 /* AudioButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		05E7D80427A7341200A0E6C9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		05E7D80627A7341400A0E6C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05E7D80927A7341400A0E6C9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		05E7D81127A73E7E00A0E6C9 /* ButtonGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonGridView.swift; sourceTree = "<group>"; };
+		05E7D81327A73F0B00A0E6C9 /* AudioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +55,8 @@
 		05E7D80127A7341200A0E6C9 /* TobaTalk */ = {
 			isa = PBXGroup;
 			children = (
+				05E7D81027A73E4800A0E6C9 /* View */,
 				05E7D80227A7341200A0E6C9 /* TobaTalkApp.swift */,
-				05E7D80427A7341200A0E6C9 /* ContentView.swift */,
 				05E7D80627A7341400A0E6C9 /* Assets.xcassets */,
 				05E7D80827A7341400A0E6C9 /* Preview Content */,
 			);
@@ -65,6 +69,16 @@
 				05E7D80927A7341400A0E6C9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		05E7D81027A73E4800A0E6C9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				05E7D80427A7341200A0E6C9 /* ContentView.swift */,
+				05E7D81127A73E7E00A0E6C9 /* ButtonGridView.swift */,
+				05E7D81327A73F0B00A0E6C9 /* AudioButtonView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +152,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				05E7D80527A7341200A0E6C9 /* ContentView.swift in Sources */,
+				05E7D81427A73F0B00A0E6C9 /* AudioButtonView.swift in Sources */,
+				05E7D81227A73E7E00A0E6C9 /* ButtonGridView.swift in Sources */,
 				05E7D80327A7341200A0E6C9 /* TobaTalkApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
