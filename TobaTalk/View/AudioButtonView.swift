@@ -7,9 +7,14 @@
 
 import SwiftUI
 
-struct ABView: View {
-    let content: String
+struct Word: Identifiable, Hashable {
+    let id = UUID()
+    let text: String
     var image = "photo"
+}
+
+struct ABView: View {
+    let word: Word
     
     var body: some View {
         ZStack {
@@ -17,18 +22,19 @@ struct ABView: View {
             shape.fill().foregroundColor(.white)
             shape.stroke(lineWidth: 3)
             VStack{
-                Image(systemName: image)
+                Image(systemName: word.image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 100, height: 100)
-                Text(content).font(.largeTitle)
+                    .frame(width: 80, height: 80)
+                Text(word.text).font(.largeTitle)
             }
         }
+        .frame(width: 120, height: 160)
     }
 }
 
 struct AudioButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ABView(content: "test")
+        ABView(word: Word(text: "test"))
     }
 }
