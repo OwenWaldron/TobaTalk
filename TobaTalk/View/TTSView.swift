@@ -39,9 +39,11 @@ struct TTSView: View {
         synthesizer.speak(output)
     }
     
+    
     struct TTSView_Previews: PreviewProvider {
         static var previews: some View {
             TTSView()
+.previewInterfaceOrientation(.landscapeLeft)
         }
         
     }
