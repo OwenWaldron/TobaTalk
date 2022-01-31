@@ -8,23 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		054D103D27A74FD400141F8A /* SentenceBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D103C27A74FD400141F8A /* SentenceBar.swift */; };
+		0594C20827A84E79005D824C /* ImageKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594C20727A84E79005D824C /* ImageKeyboardView.swift */; };
 		05E7D80327A7341200A0E6C9 /* TobaTalkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7D80227A7341200A0E6C9 /* TobaTalkApp.swift */; };
 		05E7D80527A7341200A0E6C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7D80427A7341200A0E6C9 /* ContentView.swift */; };
 		05E7D80727A7341400A0E6C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05E7D80627A7341400A0E6C9 /* Assets.xcassets */; };
 		05E7D80A27A7341400A0E6C9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05E7D80927A7341400A0E6C9 /* Preview Assets.xcassets */; };
-		05E7D81227A73E7E00A0E6C9 /* ButtonGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7D81127A73E7E00A0E6C9 /* ButtonGridView.swift */; };
 		05E7D81427A73F0B00A0E6C9 /* AudioButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7D81327A73F0B00A0E6C9 /* AudioButtonView.swift */; };
 		F05EBC3627A742A7005EC1F8 /* TTSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05EBC3527A742A7005EC1F8 /* TTSView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		054D103C27A74FD400141F8A /* SentenceBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceBar.swift; sourceTree = "<group>"; };
+		0594C20727A84E79005D824C /* ImageKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageKeyboardView.swift; sourceTree = "<group>"; };
 		05E7D7FF27A7341200A0E6C9 /* TobaTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TobaTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E7D80227A7341200A0E6C9 /* TobaTalkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TobaTalkApp.swift; sourceTree = "<group>"; };
 		05E7D80427A7341200A0E6C9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		05E7D80627A7341400A0E6C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05E7D80927A7341400A0E6C9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		05E7D81127A73E7E00A0E6C9 /* ButtonGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonGridView.swift; sourceTree = "<group>"; };
 		05E7D81327A73F0B00A0E6C9 /* AudioButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioButtonView.swift; sourceTree = "<group>"; };
 		F05EBC3527A742A7005EC1F8 /* TTSView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TTSView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,10 +79,10 @@
 			isa = PBXGroup;
 			children = (
 				05E7D80427A7341200A0E6C9 /* ContentView.swift */,
-				05E7D81127A73E7E00A0E6C9 /* ButtonGridView.swift */,
 				05E7D81327A73F0B00A0E6C9 /* AudioButtonView.swift */,
 				F05EBC3527A742A7005EC1F8 /* TTSView.swift */,
 				054D103C27A74FD400141F8A /* SentenceBar.swift */,
+				0594C20727A84E79005D824C /* ImageKeyboardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -158,10 +158,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				05E7D80527A7341200A0E6C9 /* ContentView.swift in Sources */,
+				0594C20827A84E79005D824C /* ImageKeyboardView.swift in Sources */,
 				F05EBC3627A742A7005EC1F8 /* TTSView.swift in Sources */,
 				054D103D27A74FD400141F8A /* SentenceBar.swift in Sources */,
 				05E7D81427A73F0B00A0E6C9 /* AudioButtonView.swift in Sources */,
-				05E7D81227A73E7E00A0E6C9 /* ButtonGridView.swift in Sources */,
 				05E7D80327A7341200A0E6C9 /* TobaTalkApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
