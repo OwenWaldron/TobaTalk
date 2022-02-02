@@ -9,7 +9,17 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ImageKeyboardView()
+        TabView {
+            ImageKeyboardView().tabItem{
+                Image(systemName: "photo")
+            }
+            TTSView().tabItem{
+                Image(systemName: "keyboard")
+            }
+            SettingsView().tabItem{
+                Image(systemName: "gear")
+            }
+        }
     }
 }
 

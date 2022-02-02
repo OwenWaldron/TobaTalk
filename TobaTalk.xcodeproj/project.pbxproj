@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0507AB6B27AAF3F10035213B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507AB6A27AAF3F10035213B /* SettingsView.swift */; };
 		054D103D27A74FD400141F8A /* SentenceBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D103C27A74FD400141F8A /* SentenceBar.swift */; };
 		0594C20827A84E79005D824C /* ImageKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594C20727A84E79005D824C /* ImageKeyboardView.swift */; };
 		05E7D80327A7341200A0E6C9 /* TobaTalkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7D80227A7341200A0E6C9 /* TobaTalkApp.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0507AB6A27AAF3F10035213B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		054D103C27A74FD400141F8A /* SentenceBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceBar.swift; sourceTree = "<group>"; };
 		0594C20727A84E79005D824C /* ImageKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageKeyboardView.swift; sourceTree = "<group>"; };
 		05E7D7FF27A7341200A0E6C9 /* TobaTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TobaTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,6 +42,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0507AB6727AAF0320035213B /* Image Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				05E7D81327A73F0B00A0E6C9 /* AudioButtonView.swift */,
+				054D103C27A74FD400141F8A /* SentenceBar.swift */,
+				0594C20727A84E79005D824C /* ImageKeyboardView.swift */,
+			);
+			path = "Image Keyboard";
+			sourceTree = "<group>";
+		};
+		0507AB6827AAF32C0035213B /* TTS */ = {
+			isa = PBXGroup;
+			children = (
+				F05EBC3527A742A7005EC1F8 /* TTSView.swift */,
+			);
+			path = TTS;
+			sourceTree = "<group>";
+		};
+		0507AB6927AAF3DE0035213B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0507AB6A27AAF3F10035213B /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		05E7D7F627A7341200A0E6C9 = {
 			isa = PBXGroup;
 			children = (
@@ -78,11 +106,10 @@
 		05E7D81027A73E4800A0E6C9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0507AB6927AAF3DE0035213B /* Settings */,
+				0507AB6827AAF32C0035213B /* TTS */,
+				0507AB6727AAF0320035213B /* Image Keyboard */,
 				05E7D80427A7341200A0E6C9 /* ContentView.swift */,
-				05E7D81327A73F0B00A0E6C9 /* AudioButtonView.swift */,
-				F05EBC3527A742A7005EC1F8 /* TTSView.swift */,
-				054D103C27A74FD400141F8A /* SentenceBar.swift */,
-				0594C20727A84E79005D824C /* ImageKeyboardView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -157,6 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0507AB6B27AAF3F10035213B /* SettingsView.swift in Sources */,
 				05E7D80527A7341200A0E6C9 /* ContentView.swift in Sources */,
 				0594C20827A84E79005D824C /* ImageKeyboardView.swift in Sources */,
 				F05EBC3627A742A7005EC1F8 /* TTSView.swift in Sources */,
