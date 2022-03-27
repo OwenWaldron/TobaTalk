@@ -12,28 +12,50 @@ struct ImageKeyboardView: View {
         Word(text: "Hello", image:"hand.wave"),
         Word(text: "Toba", image:"eyeglasses"),
         Word(text: "Talk", image:"mouth"),
-        Word(text: "Anna", image:"heart"),
         Word(text: "Tomi", image:"brain"),
         Word(text: "Owen", image:"function"),
-        Word(text: "Gabby", image:"trash.circle"),
+        Word(text: "Yes", image:"checkmark.circle"),
+        Word(text: "No", image:"xmark.circle"),
+        Word(text: "Yes", image:"checkmark.circle"),
+        Word(text: "No", image:"xmark.circle"),
+        Word(text: "Owen", image:"function"),
+        Word(text: "Yes", image:"checkmark.circle"),
+        Word(text: "No", image:"xmark.circle"),
+        Word(text: "Yes", image:"checkmark.circle"),
+        Word(text: "No", image:"xmark.circle"),
+        Word(text: "Talk", image:"mouth"),
+        Word(text: "Tomi", image:"brain"),
+        Word(text: "Owen", image:"function"),
+        Word(text: "Yes", image:"checkmark.circle"),
+        Word(text: "No", image:"xmark.circle"),
+        Word(text: "Yes", image:"checkmark.circle"),
+        Word(text: "No", image:"xmark.circle"),
+        Word(text: "Owen", image:"function"),
+        Word(text: "Yes", image:"checkmark.circle"),
+        Word(text: "No", image:"xmark.circle"),
         Word(text: "Yes", image:"checkmark.circle"),
         Word(text: "No", image:"xmark.circle")
     ]
     @State var sentence = [Word]()
+    @State var gridItemLayout = Array(repeating: GridItem(), count: Int(UIScreen.main.bounds.width/130))
     
     var body: some View {
         VStack {
             SentenceBar(sentence: $sentence)
-            VStack {
-                LazyVGrid (columns: [GridItem(), GridItem(), GridItem(), GridItem(), GridItem(), GridItem(), GridItem(), GridItem()]) {
-                    ForEach (words) {word in
-                        Button (action: {
-                            sentence.append(word)
-                        }) {
-                            ABView(word: word)
+            HStack {
+                ScrollView {
+                    Spacer().frame(height: 20)
+                    LazyVGrid (columns: gridItemLayout) {
+                        ForEach (words) {word in
+                            Button (action: {
+                                sentence.append(word)
+                            }) {
+                                ABView(word: word)
+                            }
                         }
                     }
-                }
+                    Spacer()
+                }.padding()
             }
             Spacer()
         }
@@ -43,6 +65,6 @@ struct ImageKeyboardView: View {
 struct ImageKeyboardView_Previews: PreviewProvider {
     static var previews: some View {
         ImageKeyboardView()
-.previewInterfaceOrientation(.landscapeLeft)
+.previewInterfaceOrientation(.landscapeRight)
     }
 }

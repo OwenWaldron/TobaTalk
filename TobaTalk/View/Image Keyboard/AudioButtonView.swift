@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct Word: Identifiable, Hashable {
-    let id = UUID()
+struct Word: Identifiable, Hashable, Codable {
+    var id = UUID()
     let text: String
     var image = "photo"
 }
@@ -18,9 +18,9 @@ struct ABView: View {
     
     var body: some View {
         ZStack {
-            let shape = RoundedRectangle(cornerRadius: 20)
+            let shape = RoundedRectangle(cornerRadius: 5)
             shape.fill().foregroundColor(.white)
-            shape.stroke(lineWidth: 3)
+            shape.stroke(lineWidth: 6)
             VStack{
                 Image(systemName: word.image)
                     .resizable()

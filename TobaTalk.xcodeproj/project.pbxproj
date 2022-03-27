@@ -10,6 +10,7 @@
 		0507AB6B27AAF3F10035213B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0507AB6A27AAF3F10035213B /* SettingsView.swift */; };
 		054D103D27A74FD400141F8A /* SentenceBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054D103C27A74FD400141F8A /* SentenceBar.swift */; };
 		0594C20827A84E79005D824C /* ImageKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0594C20727A84E79005D824C /* ImageKeyboardView.swift */; };
+		05BF7F5E27F0F350004B18BD /* FileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BF7F5D27F0F350004B18BD /* FileController.swift */; };
 		05E7D80327A7341200A0E6C9 /* TobaTalkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7D80227A7341200A0E6C9 /* TobaTalkApp.swift */; };
 		05E7D80527A7341200A0E6C9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E7D80427A7341200A0E6C9 /* ContentView.swift */; };
 		05E7D80727A7341400A0E6C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05E7D80627A7341400A0E6C9 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 		0507AB6A27AAF3F10035213B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		054D103C27A74FD400141F8A /* SentenceBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentenceBar.swift; sourceTree = "<group>"; };
 		0594C20727A84E79005D824C /* ImageKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageKeyboardView.swift; sourceTree = "<group>"; };
+		05BF7F5D27F0F350004B18BD /* FileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileController.swift; sourceTree = "<group>"; };
 		05E7D7FF27A7341200A0E6C9 /* TobaTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TobaTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05E7D80227A7341200A0E6C9 /* TobaTalkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TobaTalkApp.swift; sourceTree = "<group>"; };
 		05E7D80427A7341200A0E6C9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +70,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		05BF7F5C27F0F337004B18BD /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				05BF7F5D27F0F350004B18BD /* FileController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		05E7D7F627A7341200A0E6C9 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +97,7 @@
 		05E7D80127A7341200A0E6C9 /* TobaTalk */ = {
 			isa = PBXGroup;
 			children = (
+				05BF7F5C27F0F337004B18BD /* Controller */,
 				05E7D81027A73E4800A0E6C9 /* View */,
 				05E7D80227A7341200A0E6C9 /* TobaTalkApp.swift */,
 				05E7D80627A7341400A0E6C9 /* Assets.xcassets */,
@@ -106,10 +117,10 @@
 		05E7D81027A73E4800A0E6C9 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				05E7D80427A7341200A0E6C9 /* ContentView.swift */,
 				0507AB6927AAF3DE0035213B /* Settings */,
 				0507AB6827AAF32C0035213B /* TTS */,
 				0507AB6727AAF0320035213B /* Image Keyboard */,
-				05E7D80427A7341200A0E6C9 /* ContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -187,6 +198,7 @@
 				0507AB6B27AAF3F10035213B /* SettingsView.swift in Sources */,
 				05E7D80527A7341200A0E6C9 /* ContentView.swift in Sources */,
 				0594C20827A84E79005D824C /* ImageKeyboardView.swift in Sources */,
+				05BF7F5E27F0F350004B18BD /* FileController.swift in Sources */,
 				F05EBC3627A742A7005EC1F8 /* TTSView.swift in Sources */,
 				054D103D27A74FD400141F8A /* SentenceBar.swift in Sources */,
 				05E7D81427A73F0B00A0E6C9 /* AudioButtonView.swift in Sources */,
@@ -321,11 +333,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TobaTalk/Preview Content\"";
+				DEVELOPMENT_TEAM = T572MAU45X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
@@ -350,11 +364,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TobaTalk/Preview Content\"";
+				DEVELOPMENT_TEAM = T572MAU45X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
