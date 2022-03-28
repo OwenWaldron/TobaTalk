@@ -7,18 +7,17 @@
 
 import SwiftUI
 
-let home_tile = Tile(is_word: false, folder: Folder(text: "Main", tiles: [
-    Tile(is_word: true, word:Word(text: "Hello", image:"hand.wave")),
-    Tile(is_word: false, folder:Folder(text: "Folder", image:"folder", tiles:[
-        Tile(is_word: true, word:Word(text: "Toba", image:"eyeglasses")),
-        Tile(is_word: true, word:Word(text: "Talks", image:"mouth"))
-    ]))
-]))
+let home_tile = FileController().default_tile
 
 struct ImageKeyboardView: View {
+    let fc = FileController()
     @State var active_tile = home_tile
     @State var sentence = [Word]()
     @State var gridItemLayout = Array(repeating: GridItem(), count: Int(UIScreen.main.bounds.width/130))
+    
+    init() {
+        self.active_tile = fc.getWords()
+    }
     
     var body: some View {
         VStack {
