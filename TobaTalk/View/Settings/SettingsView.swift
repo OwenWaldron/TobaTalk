@@ -7,7 +7,15 @@
 
 import SwiftUI
 
+
 struct SettingsView: View {
+    
+    enum Voice: String, CaseIterable, Identifiable {
+        case girl, boy, kid
+        var id: Self { self }
+    }
+    @State private var selectedVoice: Voice = .girl
+
     var body: some View {
         NavigationView {
             VStack{
@@ -16,11 +24,12 @@ struct SettingsView: View {
                 NavigationLink("Voice")
                 {
                     List{
-                        Text("Hi").font(.system(size:40)).frame(height: 75.0)
-                        Text("Hi").font(.system(size:40)).frame(height: 75.0)
-                        Text("Hi").font(.system(size:40)).frame(height: 75.0)
-                        Text("Hi").font(.system(size:40)).frame(height: 75.0)
-                        Text("Hi").font(.system(size:40)).frame(height: 75.0)
+                        Picker("Voice", selection: $selectedVoice){
+                            Text("Girl").tag(Voice.girl)
+                            Text("Boy").tag(Voice.boy)
+                            Text("Kid").tag(Voice.kid)
+                        }
+                        Text("Add: Language, More voices, Rate of Speech Slider, Pitch (deeper, higher, etc.), Volume?")
                     }
                 }
                 NavigationLink("Buttons")
