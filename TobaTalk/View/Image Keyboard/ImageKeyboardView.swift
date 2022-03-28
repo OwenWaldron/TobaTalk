@@ -7,20 +7,38 @@
 
 import SwiftUI
 
-struct ImageKeyboardView: View {
-    @State var active_tile = Tile(is_word: false, folder: Folder(text: "Main", tiles: [
-        Tile(is_word: true, word:Word(text: "Hello", image:"hand.wave")),
-        Tile(is_word: false, folder:Folder(text: "Folder", image:"folder", tiles:[
-            Tile(is_word: true, word:Word(text: "Toba", image:"eyeglasses")),
-            Tile(is_word: true, word:Word(text: "Talks", image:"mouth"))
-        ]))
+let home_tile = Tile(is_word: false, folder: Folder(text: "Main", tiles: [
+    Tile(is_word: true, word:Word(text: "Hello", image:"hand.wave")),
+    Tile(is_word: false, folder:Folder(text: "Folder", image:"folder", tiles:[
+        Tile(is_word: true, word:Word(text: "Toba", image:"eyeglasses")),
+        Tile(is_word: true, word:Word(text: "Talks", image:"mouth"))
     ]))
+]))
+
+struct ImageKeyboardView: View {
+    @State var active_tile = home_tile
     @State var sentence = [Word]()
     @State var gridItemLayout = Array(repeating: GridItem(), count: Int(UIScreen.main.bounds.width/130))
     
     var body: some View {
         VStack {
             SentenceBar(sentence: $sentence)
+            HStack {
+                if !(self.active_tile==home_tile) {
+                    Rectangle().frame(width: 20, height: 5)
+                    Button(action: {
+                        self.active_tile = home_tile
+                    }, label: {
+                        ZStack {
+                            let shape = RoundedRectangle(cornerRadius: 5)
+                            shape.fill().foregroundColor(.white)
+                            shape.stroke()
+                            Text("Home").font(.largeTitle)
+                        }
+                    }).frame(width: 100, height: 50)
+                }
+                Rectangle().frame(height: 5)
+            }.frame(height: 50)
             HStack {
                 ScrollView {
                     Spacer().frame(height: 20)

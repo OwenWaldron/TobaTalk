@@ -34,7 +34,9 @@ struct SentenceBar: View {
                 }
                 .frame(height: 160)
                 Button (action: {
-                    sentence.removeLast()
+                    if !sentence.isEmpty {
+                        sentence.removeLast()
+                    }
                 }) {
                     Image(systemName: "delete.left.fill")
                         .resizable()
@@ -42,7 +44,6 @@ struct SentenceBar: View {
                         .frame(height: 70)
                 }
             }
-            Rectangle().frame(height: 5)
         }
     }
 }
