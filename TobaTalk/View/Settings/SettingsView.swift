@@ -44,22 +44,6 @@ struct SettingsView: View {
     }
 }
 
-
-    func openVoice()
-    {
-        
-    }
-
-    func openSet()
-    {
-        
-    }
-
-    func goBack()
-    {
-        
-    }
-
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
