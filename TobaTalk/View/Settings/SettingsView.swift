@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import AVFoundation
 
 struct SettingsView: View {
     
@@ -14,7 +14,8 @@ struct SettingsView: View {
         case girl, boy, kid
         var id: Self { self }
     }
-    @State private var selectedVoice: Voice = .girl
+    
+    @State var selectedVoice: Voice = .girl
 
     var body: some View {
         NavigationView {
