@@ -9,17 +9,19 @@ import Foundation
 import SwiftUI
 import AVFoundation
 
-
 struct Settings: Codable
 {
-    var vSample = "Hello! I am your voice. How do I sound?"
-    var vRegion = "en-GB"
-    var vGender = "male"
+    var vIdentifier: String = "Daniel"
+    var vRate: Float = AVSpeechUtteranceDefaultSpeechRate
+    var vPitch: Float = 1.0
+    var vVolume: Float = 1.0
     
-    var vRate = AVSpeechUtteranceDefaultSpeechRate
-    var vPitch:Float = 1.0
-    var vVolume:Float = 1.0
-    
+    mutating func checkMemory() {
+        let fc = FileController()
+        if let settings: Settings = try? fc.loadSettings() {
+            self = settings
+        }
+    }
 
     func speakSample(sender: AnyObject) {
         let sampleOutput = AVSpeechUtterance(string: vSample)
@@ -46,5 +48,4 @@ struct Settings: Codable
     }
     
     // helppp */
-    
 }

@@ -32,7 +32,8 @@ struct TTSView: View {
     func speak()
     {
         let output = AVSpeechUtterance(string: word)
-        output.voice = AVSpeechSynthesisVoice(language: "en-GB")
+        let voice = AVSpeechSynthesisVoice(language: "en-GB")
+        output.voice = voice
         output.rate = 0.55
         
         let synthesizer = AVSpeechSynthesizer()

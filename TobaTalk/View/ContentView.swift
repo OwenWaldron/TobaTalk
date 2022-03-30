@@ -19,6 +19,9 @@ struct ContentView: View {
             SettingsView().tabItem{
                 Image(systemName: "gear")
             }
+            WordBank().tabItem {
+                Image(systemName: "square.grid.3x1.below.line.grid.1x2")
+            }
         }
     }
 }

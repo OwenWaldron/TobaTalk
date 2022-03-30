@@ -8,6 +8,8 @@
 import SwiftUI
 import AVFoundation
 
+let vSample = "Hello! I am your voice. How do I sound?"
+
 struct SettingsView: View {
     
     enum Voice: String, CaseIterable, Identifiable {
