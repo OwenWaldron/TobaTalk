@@ -8,29 +8,49 @@
 import SwiftUI
 
 struct Word: Identifiable, Hashable, Codable {
-    var id = UUID()
     let text: String
     var image = "photo"
+    var id: Int { return text.hash }
 }
 
 struct Folder: Identifiable, Hashable, Codable {
-    var id = UUID()
     let text: String
     var image = "photo"
     var tiles: [Tile]?
+    var id: Int { return text.hash }
 }
 
 struct Tile: Identifiable, Hashable, Codable {
-    var id = UUID()
-    let is_word: Bool
-    var word: Word?
-    var folder: Folder?
+    enum TileError: Error {
+        case WrongType
+        case InvalidID
+    }
     
-    @ViewBuilder func display() -> some View {
-        if self.is_word {
-            ABView(word: self.word!)
+    let is_word: Bool
+    var object_id: Int
+    var id: Int { return object_id }
+    
+    func getWord() throws -> Word {
+        if !is_word {
+            throw Tile.TileError.WrongType
+        }
+        let fc = FileController()
+        if let word = fc.getWords().first(where: {$0.id == object_id}) {
+            return word
         } else {
-            FolderView(folder: self.folder!)
+            throw Tile.TileError.InvalidID
+        }
+    }
+    
+    func getFolder() throws -> Folder {
+        if is_word {
+            throw Tile.TileError.WrongType
+        }
+        let fc = FileController()
+        if let folder = fc.getFolders().first(where: {$0.id == object_id}) {
+            return folder
+        } else {
+            throw Tile.TileError.InvalidID
         }
     }
 }
@@ -48,7 +68,7 @@ struct ABView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 80, height: 80)
-                Text(word.text).font(.largeTitle)
+                Text(word.text).font(.title)
             }
         }
         .frame(width: 120, height: 160)
@@ -78,7 +98,7 @@ struct FolderView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(width: 80, height: 80)
-                        Text(folder.text).font(.largeTitle)
+                        Text(folder.text).font(.title)
                     }.foregroundColor(.black)
                 }.frame(width: 120, height: 150)
             }

@@ -8,7 +8,11 @@
 import SwiftUI
 import AVFoundation
 
+<<<<<<< HEAD
 //let SF = Settings()
+=======
+let vSample = "Hello! I am your voice. How do I sound?"
+>>>>>>> 45c1778bfdab8431ef7f1d33756eb4ac2f64be33
 
 struct SettingsView: View {
 

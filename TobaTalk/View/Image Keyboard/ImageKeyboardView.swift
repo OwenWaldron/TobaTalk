@@ -7,26 +7,27 @@
 
 import SwiftUI
 
-let home_tile = FileController().default_tile
-
 struct ImageKeyboardView: View {
     let fc = FileController()
-    @State var active_tile = home_tile
+    var home_folder: Folder
+    @State var active_folder: Folder
     @State var sentence = [Word]()
     @State var gridItemLayout = Array(repeating: GridItem(), count: Int(UIScreen.main.bounds.width/130))
     
     init() {
-        self.active_tile = fc.getWords()
+        let temp = fc.getFolders().first(where: {$0.id == "Home".hash})!
+        self.active_folder = temp
+        self.home_folder = temp
     }
     
     var body: some View {
         VStack {
             SentenceBar(sentence: $sentence)
             HStack {
-                if !(self.active_tile==home_tile) {
+                if !(self.active_folder == home_folder) {
                     Rectangle().frame(width: 20, height: 5)
                     Button(action: {
-                        self.active_tile = home_tile
+                        self.active_folder = home_folder
                     }, label: {
                         ZStack {
                             let shape = RoundedRectangle(cornerRadius: 5)
@@ -42,18 +43,20 @@ struct ImageKeyboardView: View {
                 ScrollView {
                     Spacer().frame(height: 20)
                     LazyVGrid (columns: gridItemLayout) {
-                        ForEach (active_tile.folder!.tiles ?? []) {tile in
+                        ForEach (active_folder.tiles ?? []) {tile in
                             if tile.is_word {
+                                let word = try! tile.getWord()
                                 Button (action: {
-                                    sentence.append(tile.word!)
+                                    sentence.append(word)
                                 }) {
-                                    ABView(word: tile.word!)
+                                    ABView(word: word)
                                 }
                             } else {
+                                let folder = try! tile.getFolder()
                                 Button (action: {
-                                    active_tile = tile
+                                    active_folder = folder
                                 }) {
-                                    FolderView(folder: tile.folder!)
+                                    FolderView(folder: folder)
                                 }
                             }
                         }
