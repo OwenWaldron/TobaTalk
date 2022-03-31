@@ -12,24 +12,25 @@ import AVFoundation
 
 struct Settings: Codable
 {
-    var vSample = "Hello! I am your voice. How do I sound?"
-    var vRegion = "en-GB"
-    var vGender = "male"
+    var vInput = "Hello! I am your voice. How do I sound?"
+    var vVoice: String = "Daniel"
     
     var vRate = AVSpeechUtteranceDefaultSpeechRate
     var vPitch:Float = 1.0
     var vVolume:Float = 1.0
     
 
-    func speakSample(sender: AnyObject) {
-        let sampleOutput = AVSpeechUtterance(string: vSample)
+    func speakInput() {
+        let spokenOutput = AVSpeechUtterance(string: vInput)
      
-        sampleOutput.rate = vRate
-        sampleOutput.pitchMultiplier = vPitch
-        sampleOutput.volume = vVolume
+        spokenOutput.rate = vRate
+        spokenOutput.pitchMultiplier = vPitch
+        spokenOutput.volume = vVolume
+        
+        spokenOutput.voice = AVSpeechSynthesisVoice(identifier: vVoice)
      
         let synthesizer = AVSpeechSynthesizer()
-        synthesizer.speak(sampleOutput)
+        synthesizer.speak(spokenOutput)
     }
     
     /* mutating func loadSettings() -> Bool {
