@@ -17,6 +17,7 @@ struct Settings: Codable
     var vVolume: Float = 1.0
 
     func speakSample(sender: AnyObject) {
+        let vSample = "Hello. This is your selected voice."
         let sampleOutput = AVSpeechUtterance(string: vSample)
      
         sampleOutput.rate = vRate

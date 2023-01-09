@@ -8,12 +8,6 @@
 import SwiftUI
 import AVFoundation
 
-<<<<<<< HEAD
-//let SF = Settings()
-=======
-let vSample = "Hello! I am your voice. How do I sound?"
->>>>>>> 45c1778bfdab8431ef7f1d33756eb4ac2f64be33
-
 struct SettingsView: View {
 
     var object = AVSpeechSynthesisVoice.speechVoices()
@@ -21,7 +15,7 @@ struct SettingsView: View {
     @State var s = Settings()
     
     var body: some View {
-        NavigationView {
+        /*NavigationView {
             VStack{
                 Text("TobaTalks \n Settings").font(.system(size:40)).frame(height: 100)
             List{
@@ -61,6 +55,8 @@ struct SettingsView: View {
             }
             }
         }
+        */
+        Text("TODO: Settings")
     }
 }
 
