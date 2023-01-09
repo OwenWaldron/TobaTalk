@@ -8,17 +8,18 @@
 import SwiftUI
 import AVFoundation
 
+<<<<<<< HEAD
+//let SF = Settings()
+=======
 let vSample = "Hello! I am your voice. How do I sound?"
+>>>>>>> 45c1778bfdab8431ef7f1d33756eb4ac2f64be33
 
 struct SettingsView: View {
-    
-    enum Voice: String, CaseIterable, Identifiable {
-        case girl, boy, kid
-        var id: Self { self }
-    }
-    
-    @State var selectedVoice: Voice = .girl
 
+    var object = AVSpeechSynthesisVoice.speechVoices()
+    
+    @State var s = Settings()
+    
     var body: some View {
         NavigationView {
             VStack{
@@ -27,19 +28,26 @@ struct SettingsView: View {
                 NavigationLink("Voice")
                 {
                     List{
-                        Picker("Voice", selection: $selectedVoice){
-                            Text("Girl").tag(Voice.girl)
-                            Text("Boy").tag(Voice.boy)
-                            Text("Kid").tag(Voice.kid)
+                        Picker("Voice", selection: $s.vVoice){
+                            ForEach(object, id: \.self){
+                                if $0.language.contains("en"){
+                                    Text($0.name + " (" + $0.language + ")")
+                                }
+                            }
                         }
-                        Text("Add: Language, More voices, Rate of Speech Slider, Pitch (deeper, higher, etc.), Volume?")
+                        
+    // Add: Rate of Speech Slider, Pitch (deeper, higher, etc.), Volume?
+                        Text("You chose: \(s.vVoice).")
                     }
+                    
                 }
                 NavigationLink("Buttons")
                 {
-                    List{
-                        Text("Hey").font(.system(size:40)).frame(height: 75.0)
-                        Text("Hey").font(.system(size:40)).frame(height: 75.0)
+                    Button(action:{
+                        s.speakInput()
+                    })
+                    {
+                        Text("Speak")
                     }
                 }
                 NavigationLink("Settings 3")
