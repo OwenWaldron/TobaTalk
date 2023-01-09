@@ -9,8 +9,8 @@ import SwiftUI
 import AVFoundation
 
 struct TTSView: View {
-    
     @State var word: String = ""
+    let synthesizer = AVSpeechSynthesizer()
     
     var body: some View {
         
@@ -36,7 +36,6 @@ struct TTSView: View {
         output.voice = voice
         output.rate = 0.55
         
-        let synthesizer = AVSpeechSynthesizer()
         synthesizer.speak(output)
     }
     

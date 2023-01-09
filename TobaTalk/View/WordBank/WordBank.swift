@@ -8,40 +8,45 @@
 import SwiftUI
 
 struct WordBank: View {
-    let gridItemLayout = Array(repeating: GridItem(), count: Int(UIScreen.main.bounds.width/130))
-    @State var folders: [Folder] = FileController().getFolders()
-    @State var words: [Word] = FileController().getWords()
+    @ObservedObject var viewModel: TobaViewModel
+    @State var showing_form = false
+    @State var active_tile: TobaModel.Tile = TobaModel.Tile(is_word: true, object_id: 0)
     
     var body: some View {
         ScrollView {
             VStack {
                 bar(word: "Folders")
-                LazyVGrid (columns: gridItemLayout) {
-                    ForEach (folders) { folder in
-                        FolderView(folder: folder)
-                    }
-                    Button (action: {
-                        
-                    }) {
-                        ABView(word: Word(text: "New", image: "folder.badge.plus")).foregroundColor(.blue)
+                LazyVGrid (columns: [GridItem(.adaptive(minimum: 120))]) {
+                    ForEach (viewModel.folders) { folder in
+                        Button(action: {
+                            active_tile = TobaModel.Tile(is_word: false, object_id: folder.id)
+                            showing_form = true
+                        }) {
+                            FolderView(folder: folder)
+                        }
                     }
                 }
                 Spacer().frame(height:40)
                 bar(word: "Words")
-                LazyVGrid (columns: gridItemLayout) {
-                    ForEach (words) { word in
-                        ABView(word: word)
-                    }
-                    Button (action: {
-                        
-                    }) {
-                        ABView(word: Word(text: "New", image: "doc.badge.plus")).foregroundColor(.blue)
+                LazyVGrid (columns: [GridItem(.adaptive(minimum: 120))]) {
+                    ForEach (viewModel.words) { word in
+                        Button(action: {
+                            active_tile = TobaModel.Tile(is_word: true, object_id: word.id)
+                            showing_form = true
+                        }) {
+                            ABView(word: word)
+                        }
                     }
                 }
-            }.padding()
+            }
+            .padding()
+            .sheet(isPresented: $showing_form) {
+                TileOptions(viewModel: viewModel, active_tile: $active_tile)
+            }
         }
     }
 }
+
 
 struct bar: View {
     let word: String
@@ -59,12 +64,5 @@ struct bar: View {
                 Rectangle().frame(height: 5)
             }
         }
-    }
-}
-
-struct WordBank_Previews: PreviewProvider {
-    static var previews: some View {
-        WordBank()
-.previewInterfaceOrientation(.landscapeLeft)
     }
 }

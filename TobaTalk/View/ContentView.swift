@@ -8,19 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var viewModel: TobaViewModel
+    
     var body: some View {
         TabView {
-            ImageKeyboardView().tabItem{
+            ImageKeyboardView(viewModel: viewModel).tabItem{
                 Image(systemName: "photo")
             }
+            
             TTSView().tabItem{
                 Image(systemName: "keyboard")
             }
+            /*
             SettingsView().tabItem{
                 Image(systemName: "gear")
             }
-            WordBank().tabItem {
+             */
+            WordBank(viewModel: viewModel).tabItem {
                 Image(systemName: "square.grid.3x1.below.line.grid.1x2")
+            }
+            AddPage(viewModel: viewModel).tabItem {
+                Image(systemName: "doc.badge.plus")
             }
         }
     }
@@ -28,7 +36,8 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        let Toba = TobaViewModel()
+        ContentView(viewModel: Toba)
             .previewInterfaceOrientation(.landscapeLeft)
     }
 }

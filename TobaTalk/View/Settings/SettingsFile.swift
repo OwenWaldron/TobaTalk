@@ -15,13 +15,6 @@ struct Settings: Codable
     var vRate: Float = AVSpeechUtteranceDefaultSpeechRate
     var vPitch: Float = 1.0
     var vVolume: Float = 1.0
-    
-    mutating func checkMemory() {
-        let fc = FileController()
-        if let settings: Settings = try? fc.loadSettings() {
-            self = settings
-        }
-    }
 
     func speakSample(sender: AnyObject) {
         let sampleOutput = AVSpeechUtterance(string: vSample)

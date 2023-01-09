@@ -6,37 +6,26 @@
 //
 
 import SwiftUI
-import AVFoundation
 
 struct SentenceBar: View {
-    @Binding var sentence: [Word]
+    @ObservedObject var viewModel: TobaViewModel
+    
 
     var body: some View {
         VStack {
             HStack (spacing: 5) {
                 Button (action: {
-                    var message = ""
-                    for word in sentence {
-                        message += word.text+" "
-                    }
-                    let output = AVSpeechUtterance(string: message)
-                    output.voice = AVSpeechSynthesisVoice(language: "en-GB")
-                    output.rate = 0.55
-                    
-                    let synthesizer = AVSpeechSynthesizer()
-                    synthesizer.speak(output)
+                    viewModel.speakSentence()
                 }){
                     Spacer().frame(width: 5)
-                    ForEach (sentence) { word in
+                    ForEach (viewModel.sentence) { word in
                         ABView(word: word)
                     }
                     Spacer()
                 }
                 .frame(height: 160)
                 Button (action: {
-                    if !sentence.isEmpty {
-                        sentence.removeLast()
-                    }
+                    viewModel.deleteWordFromSentence()
                 }) {
                     Image(systemName: "delete.left.fill")
                         .resizable()
