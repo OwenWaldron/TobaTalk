@@ -41,7 +41,7 @@ struct WordBank: View {
             }
             .padding()
             .sheet(isPresented: $showing_form) {
-                TileOptions(viewModel: viewModel, active_tile: $active_tile)
+                TileOptions(viewModel: viewModel, showing_sheet: $showing_form, active_tile: $active_tile)
             }
         }
     }

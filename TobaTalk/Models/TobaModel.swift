@@ -18,7 +18,9 @@ struct TobaModel {
     private(set) var sentence: [Word] = []
     private(set) var words: [Word]
     private(set) var folders: [Folder]
+    private(set) var settings: Settings
     private var fc = FileController()
+    
     
     
     init() {
@@ -27,6 +29,7 @@ struct TobaModel {
         self.folders = fc.getFolders()
         self.home_folder = folders.first(where: {$0.id == fc.getHomeID()}) ?? folders[0]
         self.active_folder = self.home_folder
+        self.settings = fc.getSettings()
     }
     
     mutating func on_keyboard_tap(_ tile: Tile) {
@@ -43,18 +46,24 @@ struct TobaModel {
         }
     }
     
+    
     let synthesizer = AVSpeechSynthesizer()
+    let samplePhrase = "Hello Toba Talks"
+    func speak(_ message: String) {
+        let output = AVSpeechUtterance(string: message)
+        output.voice = settings.voice
+        output.rate = settings.vRate
+        output.pitchMultiplier = settings.vPitch
+        output.volume = settings.vVolume
+        synthesizer.speak(output)
+    }
+    
     func speakSentence() {
         var message = ""
         for word in sentence {
             message += word.text + " "
         }
-        
-        let output = AVSpeechUtterance(string: message)
-        let voice = AVSpeechSynthesisVoice(language: "en-GB")
-        output.voice = voice
-        output.rate = 0.55
-        synthesizer.speak(output)
+        speak(message)
     }
 
     mutating func addSentenceWord(_ word: Word) {
@@ -105,6 +114,11 @@ struct TobaModel {
         fc.setWords(words)
     }
     
+    func saveSettings() {
+        fc.setSettings(settings)
+        speak(samplePhrase)
+    }
+    
     
     mutating func addWord(_ word: Word) {
         words.append(word)
@@ -129,7 +143,7 @@ struct TobaModel {
                     Folder(
                         text: folder.text,
                         image: folder.image,
-                        tiles: folder.tiles?.filter({ tole in
+                        tiles: folder.tiles.filter({ tole in
                             tole.id != tile.id
                         })
                     )
@@ -141,9 +155,12 @@ struct TobaModel {
     }
     
     mutating func addTileToFolder(_ tile: Tile, to fldr: Folder) {
+        print(folders)
+        print(fldr)
         var new_folders: [Folder] = []
         var flr = fldr
-        flr.tiles?.append(tile)
+        flr.tiles.append(tile)
+        print(flr)
         for folder in folders {
             if folder.id == fldr.id {
                 new_folders.append(flr)
@@ -156,20 +173,110 @@ struct TobaModel {
     }
     
     
+    mutating func removeTileFromFolder(_ tile: Tile, from fldr: Folder) {
+        var flr = fldr
+        flr.tiles.removeAll(where: { $0.id == tile.id })
+        
+        var new_folders: [Folder] = []
+        for folder in folders {
+            if folder.id == fldr.id {
+                new_folders.append(flr)
+            } else {
+                new_folders.append(folder)
+            }
+        }
+        
+        folders = new_folders
+        saveFolders()
+    }
+    
+    func getFoldersContainigTile(_ tile: Tile) -> [Folder] {
+        var output: [Folder] = []
+        for folder in folders {
+            if folder.tiles.contains(tile) {
+                output.append(folder)
+            }
+        }
+        return output
+    }
+    
+    func getVoices() -> [IDVoice] {
+        var voices: [IDVoice] = []
+        if let voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.Karen-compact") {
+            voices.append(IDVoice(voice: voice, name: "Karen"))
+        }
+        if let voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.Daniel-compact") {
+            voices.append(IDVoice(voice: voice, name: "Daniel"))
+        }
+        if let voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_female_en-AU_compact") {
+            voices.append(IDVoice(voice: voice, name: "Cathrine"))
+        }
+        if let voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_en-AU_compact") {
+            voices.append(IDVoice(voice: voice, name: "Gordon"))
+        }
+        if let voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.siri_male_en-US_compact") {
+            voices.append(IDVoice(voice: voice, name: "Aaron"))
+        }
+        if let voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.Samantha-compact") {
+            voices.append(IDVoice(voice: voice, name: "Samantha"))
+        }
+        if let voice = AVSpeechSynthesisVoice(identifier: "com.apple.speech.synthesis.voice.Hysterical") {
+            voices.append(IDVoice(voice: voice, name: "Laughy"))
+        }
+        return voices
+    }
+    
+    mutating func setVoice(_ voice: IDVoice) {
+        settings.vIdentifier = voice.id
+        saveSettings()
+    }
+    
+    mutating func setRate(_ rate: Float) {
+        settings.vRate = rate
+        saveSettings()
+    }
+    
+    mutating func setVolume(_ volume: Float) {
+        settings.vVolume = volume
+        saveSettings()
+    }
+    
+    mutating func setPitch(_ pitch: Float) {
+        settings.vPitch = pitch
+        saveSettings()
+    }
+    
+    mutating func resetWordsToDefault() {
+        words = FileController.default_words
+        folders = FileController.default_folders
+        saveWords()
+        saveFolders()
+    }
+    
+    mutating func resetSettingsToDefault() {
+        settings = Settings()
+        saveSettings()
+    }
+    
+    
     
     // MARK: - Structures()
     
     struct Word: Identifiable, Hashable, Codable {
         let text: String
         var image = "photo"
-        var id: Int { return text.hash }
+        var id: Int {
+            return text.hash
+        }
     }
 
     struct Folder: Identifiable, Hashable, Codable {
         let text: String
         var image = "photo"
-        var tiles: [Tile]?
-        var id: Int { return text.hash }
+        var tiles: [Tile] = []
+        var id: Int {
+            return ("folder%" + text).hash
+        }
     }
 
     struct Tile: Identifiable, Hashable, Codable {
@@ -181,5 +288,14 @@ struct TobaModel {
         let is_word: Bool
         var object_id: Int
         var id: Int { return object_id }
+    }
+    
+    
+    struct IDVoice: Identifiable {
+        let voice: AVSpeechSynthesisVoice
+        var name: String = ""
+        var id: String {
+            return voice.identifier
+        }
     }
 }

@@ -32,7 +32,7 @@ struct FileController {
             TobaModel.Tile(is_word: true, object_id: "Hello".hash),
             TobaModel.Tile(is_word: true, object_id: "Toba".hash),
             TobaModel.Tile(is_word: true, object_id: "Talks".hash),
-            TobaModel.Tile(is_word: false, object_id: "Test".hash)
+            TobaModel.Tile(is_word: false, object_id: "folder%Test".hash)
         ]),
         TobaModel.Folder(text: "Test", image: "folder", tiles: [
             TobaModel.Tile(is_word: true, object_id: "Owen".hash),
@@ -64,7 +64,6 @@ struct FileController {
         let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         if let json: Data = try? encoder.encode(words) {
             do {
-                print(json)
                 try json.write(to: url.appendingPathComponent("words"))
             } catch {
                 print("Error writing to file")
@@ -93,13 +92,24 @@ struct FileController {
         return FileController.default_folders[0].id
     }
     
-    func getSettings() throws -> Settings {
+    func getSettings() -> Settings {
         let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         if let jsonData = try? Data(contentsOf: url.appendingPathComponent("settings")) {
             if let settings: Settings = try? decoder.decode(Settings.self, from:jsonData) {
                 return settings
             }
         }
-        throw FileError.DefaultSettings
+        return Settings()
+    }
+    
+    func setSettings(_ settings: Settings) {
+        let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        if let json: Data = try? encoder.encode(settings) {
+            do {
+                try json.write(to: url.appendingPathComponent("settings"))
+            } catch {
+                print("Error writing to file")
+            }
+        }
     }
 }

@@ -30,7 +30,12 @@ struct ABView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 80, height: 80)
-                Text(word.text).font(.title)
+                Text(word.text)
+                    .frame(width: 100)
+                    .font(.title)
+                    .scaledToFill()
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
             }
         }
         .frame(height: HEIGHT)

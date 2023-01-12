@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 // This is the ViewModel for the TobaTalks app
 class TobaViewModel: ObservableObject {
@@ -30,6 +31,26 @@ class TobaViewModel: ObservableObject {
     
     var isHome: Bool {
         return (model.active_folder == model.home_folder)
+    }
+    
+    var voices: [TobaModel.IDVoice] {
+        return model.getVoices()
+    }
+    
+    var chosenVoice: TobaModel.IDVoice {
+        return TobaModel.IDVoice(voice: model.settings.voice)
+    }
+    
+    var rate: Float {
+        return model.settings.vRate
+    }
+    
+    var pitch: Float {
+        return model.settings.vPitch
+    }
+    
+    var volume: Float {
+        return model.settings.vVolume
     }
     
     // MARK: - Intents()
@@ -80,5 +101,41 @@ class TobaViewModel: ObservableObject {
     
     func addTileToFolder(_ tile: TobaModel.Tile, to folder: TobaModel.Folder) {
         model.addTileToFolder(tile, to: folder)
+    }
+    
+    func getFoldersContaingTile(_ tile: TobaModel.Tile) -> [TobaModel.Folder] {
+        return model.getFoldersContainigTile(tile)
+    }
+    
+    func removeTileFromFolder(_ tile: TobaModel.Tile, from folder: TobaModel.Folder) {
+        model.removeTileFromFolder(tile, from: folder)
+    }
+    
+    func resetDefaultWords() {
+        model.resetWordsToDefault()
+    }
+    
+    func resetDefaultSettings() {
+        model.resetSettingsToDefault()
+    }
+    
+    func changeVoice(to voice: TobaModel.IDVoice) {
+        model.setVoice(voice)
+    }
+    
+    func changeRate(to rate: Float) {
+        model.setRate(rate)
+    }
+    
+    func changeVolume(to volume: Float) {
+        model.setVolume(volume)
+    }
+    
+    func changePitch(to pitch: Float) {
+        model.setPitch(pitch)
+    }
+    
+    func speak(_ phrase: String) {
+        model.speak(phrase)
     }
 }

@@ -10,7 +10,7 @@ import AVFoundation
 
 struct TTSView: View {
     @State var word: String = ""
-    let synthesizer = AVSpeechSynthesizer()
+    @ObservedObject var viewModel: TobaViewModel
     
     var body: some View {
         
@@ -21,30 +21,12 @@ struct TTSView: View {
             .frame(width: 600.0, height: 100.0)
         
         RoundedRectangle(cornerRadius:10.0).fill(Color.blue).frame(width: 250, height: 75, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).overlay(HStack{
-            Button(action: speak){
+            Button(action: {
+                viewModel.speak(word)
+            }){
                 Text("Speak").font(.system(size:40)).foregroundColor(.white)
             }
         })
         }
-        
-    }
-    
-    func speak()
-    {
-        let output = AVSpeechUtterance(string: word)
-        let voice = AVSpeechSynthesisVoice(language: "en-GB")
-        output.voice = voice
-        output.rate = 0.55
-        
-        synthesizer.speak(output)
-    }
-    
-    
-    struct TTSView_Previews: PreviewProvider {
-        static var previews: some View {
-            TTSView()
-.previewInterfaceOrientation(.landscapeLeft)
-        }
-        
     }
 }

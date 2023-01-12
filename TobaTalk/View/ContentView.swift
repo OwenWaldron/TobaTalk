@@ -16,19 +16,17 @@ struct ContentView: View {
                 Image(systemName: "photo")
             }
             
-            TTSView().tabItem{
+            TTSView(viewModel: viewModel).tabItem{
                 Image(systemName: "keyboard")
             }
-            /*
-            SettingsView().tabItem{
-                Image(systemName: "gear")
-            }
-             */
             WordBank(viewModel: viewModel).tabItem {
                 Image(systemName: "square.grid.3x1.below.line.grid.1x2")
             }
             AddPage(viewModel: viewModel).tabItem {
                 Image(systemName: "doc.badge.plus")
+            }
+            SettingsView(viewModel: viewModel).tabItem{
+                Image(systemName: "gear")
             }
         }
     }
